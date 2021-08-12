@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(238, 158, 238, 0.924) !important;
+    background-color: rgba(238, 158, 238, 0.924);
 }
 h1 {
     margin-top: 30px;
@@ -20,4 +20,7 @@ h1 {
 
     top: -18%;
     right: 2%;
+}
+.delete {
+    visibility: hidden;
 }

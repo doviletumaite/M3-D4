@@ -3,6 +3,8 @@ window.onload = () => {
   const loadData = document.getElementById("load-data");
   loadData.addEventListener("click", () => {
     searchBooks();
+    skipBook()
+    changeStyleBtn()
   });
 };
 function searchBooks() {
@@ -33,7 +35,7 @@ const renderData = function (books) {
                 <p class="card-text">
                   This is a description of this book :) 
                 </p>
-                <button id="skip-btn" type="button" class="btn btn-light">Skip</button>
+                <button id="skip-btn" type="button" class="btn btn-light" onclick="skipBook(e)">Skip</button>
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
@@ -41,7 +43,7 @@ const renderData = function (books) {
                     <button
                       type="button"
                       class="btn btn-sm btn-outline-secondar cart-btn"
-                      onclick="changeStyleBtn()"
+                      onclick="changeStyleBtn(e)"
                     >
                       Add to Cart
                     </button>
@@ -57,7 +59,7 @@ const renderData = function (books) {
   });
 };
 
-const changeStyleBtn = function () {
+const changeStyleBtn = function (e) {
   const cartBtn = document.querySelector("cart-btn");
   cartBtn.forEach((btn) => {
     btn.onclick = function () {
@@ -68,6 +70,14 @@ const changeStyleBtn = function () {
     };
   });
 };
+const skipBook = function (e) {
+  const skipBtn = document.getElementById("skip-btn")
+  skipBtn.onclick= function () {
+  const card = document.querySelector("card")
+  card.remove
+  }
+}
+
 const changeStyleBtnTest = function () {
   const btn = document.getElementById("test");
 
