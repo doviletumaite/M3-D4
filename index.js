@@ -1,26 +1,26 @@
-let books = []
+let books = [];
 window.onload = () => {
-    const loadData = document.getElementById("load-data")
-    loadData.addEventListener("click", () => {
-        searchBooks()
+  const loadData = document.getElementById("load-data");
+  loadData.addEventListener("click", () => {
+    searchBooks();
+  });
+};
+function searchBooks() {
+  fetch(`https://striveschool-api.herokuapp.com/books`)
+    .then((response) => response.json())
+    .then((receiveData) => {
+      books = receiveData;
+      renderData(receiveData);
     })
+    .catch((err) => {
+      console.log(err);
+    });
 }
-function searchBooks ()  {
-    fetch(`https://striveschool-api.herokuapp.com/books`)
-        .then(response => response.json())
-        .then(receiveData => {
-            books  = receiveData
-            renderData(receiveData)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-}
- const renderData = function (books) {
-    const row = document.querySelector(".row")
-    row.innerHTML = ""
-    books.forEach((book) => {
-        const card = `<div class="col-4">
+const renderData = function (books) {
+  const row = document.querySelector(".row");
+  row.innerHTML = "";
+  books.forEach((book) => {
+    const card = `<div class="col-4">
         <div class="card mb-4 shadow-sm">
               <img src="${book.img}"/>
                 <title>Placeholder</title>
@@ -29,10 +29,11 @@ function searchBooks ()  {
                   Thumbnail
                 </text>
               </svg>
-              <div class="card-body">
+              <div class="card-body"> style="position:relative"
                 <p class="card-text">
                   This is a description of this book :) 
                 </p>
+                <button id="skip-btn" type="button" class="btn btn-light">Skip</button>
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
@@ -46,38 +47,33 @@ function searchBooks ()  {
                     </button>
                     
                   </div>
-                  <small class="text-muted">9 mins</small>
+                 
                 </div>
-              </div>
+              </div> 
             </div>
+           
           </div>`;
-          row.innerHTML += card
-    });
- 
-
-}
+    row.innerHTML += card;
+  });
+};
 
 const changeStyleBtn = function () {
-       const cartBtn = document.querySelector("cart-btn")
-       cartBtn.forEach((btn) => {
-              btn.onclick = function () {
-           const cards = document.querySelectorAll("card")
-           cards.forEach((card) => {
-               card.classList.add("change-style")
-           })
-
-       }
-       })
-    
-}
+  const cartBtn = document.querySelector("cart-btn");
+  cartBtn.forEach((btn) => {
+    btn.onclick = function () {
+      const cards = document.querySelectorAll("card");
+      cards.forEach((card) => {
+        card.classList.add("change-style");
+      });
+    };
+  });
+};
 const changeStyleBtnTest = function () {
-    const btn = document.getElementById("test")
-    
-           btn.onclick = function () {
-        const h1 = document.querySelector("h1")
-        
-            h1.classList.add("change-style")
-           }
-    }
-    
- 
+  const btn = document.getElementById("test");
+
+  btn.onclick = function () {
+    const h1 = document.querySelector("h1");
+
+    h1.classList.add("change-style");
+  };
+};
