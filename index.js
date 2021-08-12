@@ -7,6 +7,7 @@ window.onload = () => {
     changeStyleBtn()
   });
 };
+
 function searchBooks() {
   fetch(`https://striveschool-api.herokuapp.com/books`)
     .then((response) => response.json())
@@ -15,7 +16,7 @@ function searchBooks() {
       renderData(receiveData);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 }
 const renderData = function (books) {
@@ -28,14 +29,14 @@ const renderData = function (books) {
                 <title>Placeholder</title>
                 <rect width="100%" height="100%" fill="#55595c" />
                 <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                  Thumbnail
+                  
                 </text>
               </svg>
-              <div class="card-body"> style="position:relative"
+              <div class="card-body">
                 <p class="card-text">
-                  This is a description of this book :) 
+                ${book.title}
                 </p>
-                <button id="skip-btn" type="button" class="btn btn-light" onclick="skipBook(e)">Skip</button>
+               
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
@@ -47,7 +48,7 @@ const renderData = function (books) {
                     >
                       Add to Cart
                     </button>
-                    
+                     <button id="skip-btn" type="button" class="btn btn-light" onclick="skipBook(this)">Skip</button>
                   </div>
                  
                 </div>
@@ -71,15 +72,15 @@ const changeStyleBtn = function (e) {
   });
 };
 const skipBook = function (e) {
-  const skipBtn = document.getElementById("skip-btn")
-  skipBtn.onclick= function () {
+  const skipBtn = document.getElementById("#skip-btn")
+  skipBtn.onclick= "this.parentNode.parentNode.removeChild(this.parentNode)"/* function () {
   const card = document.querySelector("card")
-  card.remove
+  card.remove */
   }
-}
+
 
 const changeStyleBtnTest = function () {
-  const btn = document.getElementById("test");
+  const btn = document.getElementById("#test");
 
   btn.onclick = function () {
     const h1 = document.querySelector("h1");

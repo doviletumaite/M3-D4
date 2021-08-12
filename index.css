@@ -8,19 +8,27 @@ h1 {
     background-color: rgb(238, 134, 241) !important;
 }
 #skip-btn{
-    height: 127px;
-    width: 15px;
+    height: 28px;
+    width: 380px;
     color: slateblue;
-    word-wrap: break-word;
-    font-family: monospace;
     background-color: rgba(105, 90, 205, 0.26);
     border-color: transparent;
     z-index: 1;
-    display: inline;
-
-    top: -18%;
-    right: 2%;
+   
 }
 .delete {
     visibility: hidden;
+}
+.cart-btn{
+    height: 28px;
+    width: 380px;
+    color: slateblue;
+    background-color: rgba(105, 90, 205, 0.26);
+    border-color: transparent;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.btn-group {
+   display: inline-table;
 }
