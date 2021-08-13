@@ -1,9 +1,10 @@
 let books = [];
+let shoppingCartList = []
 window.onload = () => {
   const loadData = document.getElementById("load-data");
   loadData.addEventListener("click", () => {
     searchBooks();
-    skipBook()
+    //skipBook()
     changeStyleBtn()
   });
 };
@@ -19,24 +20,22 @@ function searchBooks() {
       console.log(err.message);
     });
 }
-const renderData = function (books) {
+function renderData ( receiveData = books ) {
   const row = document.querySelector(".row");
   row.innerHTML = "";
-  books.forEach((book) => {
+  receiveData.forEach((book) => {
     const card = `<div class="col-4">
         <div class="card mb-4 shadow-sm">
-              <img src="${book.img}"/>
+              <img src="${book.img}" class="img-fluid card-img-top alt="${book.title}"/>
                 <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" />
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                  
-                </text>
-              </svg>
               <div class="card-body">
                 <p class="card-text">
                 ${book.title}
                 </p>
-               
+                <p class="card-text">
+                ${book.category}
+                </p>
+                <a href="#" class="btn btn-light" onclick="addToCart('${String(book.asin)}', this)" >${book.price}</a>
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
@@ -60,7 +59,35 @@ const renderData = function (books) {
   });
 };
 
-const changeStyleBtn = function (e) {
+function addToCart(asin, element) {
+
+  const book = books.find( book => book.asin == asin)
+  shoppingCartList.push(book)
+  console.log(shoppingCartList)
+  //refreshShoppingCart()
+}
+function refreshShoppingCart() {
+  const shoppingCart = document.getElementById("#shopping.cart")
+  shoppingCart.innerHTML = "";
+  shoppingCartList.forEach((book) => {
+    shoppingCartList.innerHTML += `
+    <div class="shopping-item">
+              <div>
+                ${book.title}
+              </div>
+              <div>
+                ${book.price}
+              </div>
+              <div>
+                <button class="btn btn-danger" onclick="deleteItem('${String(
+                  book.asin
+                )}')">Delete </button>
+              </div>
+            </div>
+    `
+  })
+}
+/* const changeStyleBtn = function (e) {
   const cartBtn = document.querySelector("cart-btn");
   cartBtn.forEach((btn) => {
     btn.onclick = function () {
@@ -70,13 +97,14 @@ const changeStyleBtn = function (e) {
       });
     };
   });
-};
-const skipBook = function (e) {
+}; */
+/* const skipBook = function (e) {
   const skipBtn = document.getElementById("#skip-btn")
   skipBtn.onclick= "this.parentNode.parentNode.removeChild(this.parentNode)"/* function () {
   const card = document.querySelector("card")
   card.remove */
-  }
+  //} 
+
 
 
 const changeStyleBtnTest = function () {
