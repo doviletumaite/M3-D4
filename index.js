@@ -39,18 +39,12 @@ function renderData ( receiveData = books ) {
                 <p class="card-text">
                 ${book.category}
                 </p>
-                <a href="#" class="btn btn-light" onclick="addToCart('${String(book.asin)}', this)">$${book.price}</a>
+                <a href="#" class="btn btn-light" onclick="addToCart('${String(book.asin)}', this)">$${book.price} </br> Add to cart </a>
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
                   <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondar cart-btn"
-                      onclick="changeStyleBtn(e)"
-                    >
-                      Add to Cart
-                    </button>
+                    
                      <button id="skip-btn" type="button" class="btn btn-light" onclick="this.closest('.col-4').remove()">Skip</button>
                   </div>
                  
