@@ -124,3 +124,16 @@ const changeStyleBtnTest = function () {
     h1.classList.add("change-style");
   };
 };
+
+function search(query) {
+  if (query.length < 3) {
+    filteredBooks = books;
+    renderData()
+    return
+  }
+  filteredBooks = books.filter((book) =>
+  book.title.toLowerCase().includes(query.toLowerCase())
+  )
+  console.log(filteredBooks)
+  renderData(filteredBooks)
+}
