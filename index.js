@@ -1,11 +1,14 @@
 let books = [];
 let shoppingCartList = []
+let filteredBooks = [] 
+const shoppingCart = document.getElementById("shopping-cart")
 window.onload = () => {
   const loadData = document.getElementById("load-data");
   loadData.addEventListener("click", () => {
     searchBooks();
     //skipBook()
     changeStyleBtn()
+    addToCart()
   });
 };
 
@@ -14,6 +17,7 @@ function searchBooks() {
     .then((response) => response.json())
     .then((receiveData) => {
       books = receiveData;
+      console.log(receiveData)
       renderData(receiveData);
     })
     .catch((err) => {
@@ -35,7 +39,7 @@ function renderData ( receiveData = books ) {
                 <p class="card-text">
                 ${book.category}
                 </p>
-                <a href="#" class="btn btn-light" onclick="addToCart('${String(book.asin)}', this)" >${book.price}</a>
+                <a href="#" class="btn btn-light" onclick="addToCart('${String(book.asin)}', this)">$${book.price}</a>
                 <div
                   class="d-flex justify-content-between align-items-center"
                 >
@@ -60,17 +64,20 @@ function renderData ( receiveData = books ) {
 };
 
 function addToCart(asin, element) {
-
-  const book = books.find( book => book.asin == asin)
+console.log(asin)
+  const book = books.find((book) => book.asin == asin)
   shoppingCartList.push(book)
   console.log(shoppingCartList)
-  //refreshShoppingCart()
+  refreshShoppingCart(); 
+
+  element.closest(".card").classList.add("change-style")
 }
+
 function refreshShoppingCart() {
-  const shoppingCart = document.getElementById("#shopping.cart")
-  shoppingCart.innerHTML = "";
+ 
+ shoppingCart.innerHTML = "";
   shoppingCartList.forEach((book) => {
-    shoppingCartList.innerHTML += `
+    shoppingCart.innerHTML += `
     <div class="shopping-item">
               <div>
                 ${book.title}
@@ -86,6 +93,7 @@ function refreshShoppingCart() {
             </div>
     `
   })
+  console.log(shoppingCartList)
 }
 /* const changeStyleBtn = function (e) {
   const cartBtn = document.querySelector("cart-btn");
@@ -108,7 +116,7 @@ function refreshShoppingCart() {
 
 
 const changeStyleBtnTest = function () {
-  const btn = document.getElementById("#test");
+  const btn = document.getElementById("test");
 
   btn.onclick = function () {
     const h1 = document.querySelector("h1");
