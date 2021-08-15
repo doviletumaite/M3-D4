@@ -29,7 +29,7 @@ function renderData ( receiveData = books ) {
   row.innerHTML = "";
   receiveData.forEach((book) => {
     const card = `<div class="col-4">
-        <div class="card mb-4 shadow-sm">
+        <div class="card m-3">
               <img src="${book.img}" class="img-fluid card-img-top alt="${book.title}"/>
                 <title>Placeholder</title>
               <div class="card-body">
@@ -51,7 +51,7 @@ function renderData ( receiveData = books ) {
                     >
                       Add to Cart
                     </button>
-                     <button id="skip-btn" type="button" class="btn btn-light" onclick="skipBook(this)">Skip</button>
+                     <button id="skip-btn" type="button" class="btn btn-light" onclick="this.closest('.col-4').remove()">Skip</button>
                   </div>
                  
                 </div>
